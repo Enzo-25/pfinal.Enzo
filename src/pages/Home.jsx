@@ -18,17 +18,17 @@ function Home() {
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);
-      setLoading2(true);
-      const products = await fetch(`https://fakestoreapi.com/products`);
+      const products = await fetch(`https://dummyjson.com/products`);
       const listProduct = await products.json();
-      setProducts(listProduct);
+      console.log("listProduct")
+      console.log(listProduct)
+      setProducts(listProduct.products);
       setLoading(false);
-      const response2 = await fetch(
-        `https://fakestoreapi.com/products/category/${data.category}`
-      );
-      const data2 = await response2.json();
-      setSimilarProducts(data2);
-      setLoading2(false);
+      //const response2 = await fetch(
+      //  `https://fakestoreapi.com/products/category/${data.category}`
+      //);
+      //const data2 = await response2.json();
+      //setSimilarProducts(data2);
     };
     getProduct();
   }, [id]);
@@ -79,12 +79,12 @@ function Home() {
       <NavBar />
       <div className="buttons text-center py-5">
         <button className="btn btn-outline-dark btn-sm m-2" onClick={() => setFilter(products)}>All</button>
-        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("men's clothing")}>Men's Clothing</button>
-        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("women's clothing")}>
-          Women's Clothing
+        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("smartphones")}>smartphones</button>
+        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("laptops")}>
+          laptops
         </button>
-        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("jewelery")}>Jewelery</button>
-        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("electronics")}>Electronics</button>
+        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("skincare")}>skincare</button>
+        <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("fragrances")}>fragrances</button>
       </div>
       <Container>
         <>

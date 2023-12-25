@@ -18,7 +18,7 @@ function ItemDetail() {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
-            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            const response = await fetch(`https://dummyjson.com/products/${id}`);
             const data = await response.json();
             setProduct(data);
             setLoading(false);
@@ -27,9 +27,7 @@ function ItemDetail() {
     }, [id]);
 
     const onAdd = (count) => {
-        console.log("Click")
-        console.log(count) 
-        addProduct({ count })
+        addProduct({ ...product, count });
         setIsCounter(false)
     }
 
@@ -59,12 +57,17 @@ function ItemDetail() {
                     width={171}
                     height={180}
                     alt="171x180"
-                    src={product.image}
+                    src={product.thumbnail}
                 />
                 <Figure.Caption>
                     <p>description: {product.description}</p>
                     <p>Price: ${product.price}</p>
+                    <p>Stock: {product.stock}</p>
                     <Counter initial={1} stock={20} onAdd={onAdd} />
+                    {isCounter ? <p>.</p> : (<>
+                        <NavLink to={"/cart"} className="btn btn-outline-dark m-2"> Ir a carrito  </NavLink>
+                        <NavLink to={"/"} className="btn btn-outline-dark m-2"> Seguir comprando </NavLink>
+                    </>)}
                 </Figure.Caption>
             </Figure>
         )

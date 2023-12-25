@@ -2,7 +2,6 @@ import { useState } from "react"
 
 const ItemCounter = ({ initial = 1, stock, onAdd }) => {
 
-
     const [counter, setCounter] = useState(initial)
 
     const handleSumar = () => {
@@ -23,11 +22,18 @@ const ItemCounter = ({ initial = 1, stock, onAdd }) => {
 
     return (
         <div>
-            <button className="btn btn-outline-dark btn-sm m-2" onClick={handleSumar}>+</button>
+            <button
+                className="btn btn-outline-dark btn-sm m-2"
+                onClick={handleRestar}
+                disabled={counter === 1}>-</button>
             <label>{counter}</label>
-            <button className="btn btn-outline-dark btn-sm m-2" onClick={handleRestar}>-</button>
-            <button className="btn btn-outline-dark btn-sm m-2" onClick={handleOnAdd}>Agregar</button>
-
+            <button
+                className="btn btn-outline-dark btn-sm m-2"
+                onClick={handleSumar}
+                disabled={counter === stock}> + </button>
+            <button
+                className="btn btn-outline-dark btn-sm m-2"
+                onClick={handleOnAdd}>Agregar</button>
         </div>
     )
 }

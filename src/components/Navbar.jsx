@@ -10,7 +10,7 @@ import { useCartContext } from '../context/ShoppingCardContext';
 
 export const NavBar = () => {
 
-  const { totalQuantity } = useCartContext()
+  const { getTotalQuantity } = useCartContext()
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -20,7 +20,7 @@ export const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/" className="btn btn-outline-dark m-2"> Home </NavLink>
-            <NavLink to="/cart" className="btn btn-outline-dark m-2"> <FontAwesomeIcon icon={faCartShopping} /> Cart ({totalQuantity}) </NavLink>
+            <NavLink to="/cart" className="btn btn-outline-dark m-2"> <FontAwesomeIcon icon={faCartShopping} /> Cart ({getTotalQuantity() ? getTotalQuantity() : 0 }) </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

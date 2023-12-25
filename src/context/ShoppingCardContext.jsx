@@ -25,11 +25,26 @@ export const ShoppingCartContextProvider = ({ children }) => {
         setCartList([])
     }
 
+    const getTotalQuantity = () => {
+        const totalQuantity = cartList.reduce(
+            (total, product) => total + product.count,
+            0
+        );
+        return totalQuantity;
+    };
+
+    const removeProductbyId = (id) => {
+        const removeProduct = cartList.filter((product) => product.id !== id);
+        setCartList(removeProduct);
+    };
+
     return (
         <ShoppingCartContext.Provider value={{
             cartList,
             addProduct,
-            vaciarCarrito
+            vaciarCarrito,
+            getTotalQuantity,
+            removeProductbyId
         }}>
             {children}
         </ShoppingCartContext.Provider>
